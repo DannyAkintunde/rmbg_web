@@ -93,5 +93,5 @@ def remove_bg():
           return jsonify({'error': f'Server error {str(e)}'}), 500
   
 if __name__ == '__main__':
-    app.run(host=getenv('HOST', '0.0.0.0'),
-            port=getenv('PORT', 5000), debug=(getenv('DEBUG', '').lower() == 'true'))
+    app.run(host=getenv('HOST', '127.0.0.1'),
+            port=getenv('PORT', 8000), debug=(getenv('DEBUG', '').lower() == 'true'))
