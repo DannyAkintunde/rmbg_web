@@ -20,4 +20,6 @@ COPY --from=builder /root/.local /root/.local
 
 COPY ./backend .
 
+EXPOSE 8000
+
 ENTRYPOINT ["python3", "-u", "app.py"]
