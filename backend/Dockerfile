@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1
 
 #RUN apk update
 
-COPY ./requirements.txt requirements.txt
+COPY ./backend/requirements.txt requirements.txt
 
 RUN pip install --user -r requirements.txt
 
@@ -18,6 +18,6 @@ WORKDIR /app
 ENV PATH=/root/.local/bin:$PATH
 COPY --from=builder /root/.local /root/.local
 
-COPY . .
+COPY ./backend .
 
 ENTRYPOINT ["python3", "-u", "app.py"]
