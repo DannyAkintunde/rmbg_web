@@ -1,4 +1,4 @@
-requests==2.32.3
-Flask==3.0.3
-python-dotenv==1.0.1
-rembg==2.0.59
+requests
+Flask
+python-dotenv
+rembg
