@@ -14,7 +14,7 @@ models_path.mkdir(parents=True, exist_ok=True)
 models = ["birefnet-cod", "birefnet-dis", "birefnet-general", "birefnet-general-lite", "birefnet-hrsod", "birefnet-massive", "birefnet-portrait", "isnet-anime", "isnet-general-use", "sam", "silueta", "u2net", "u2net_cloth_seg", "u2net_human_seg", "u2netp"]
 # models = [file.name for file in models_path.iterdir() if file.is_file() and file.suffix == '.onnx']
 
-session = new_session('u2net')
+session = new_session(getenv('DEFAULT_MODEL', 'u2netp'))
 
 def hex_to_rgba(hex_code):
     hex_code = hex_code.lstrip('#')
@@ -93,5 +93,5 @@ def remove_bg():
           return jsonify({'error': f'Server error {str(e)}'}), 500
   
 if __name__ == '__main__':
-    app.run(host=getenv('HOST', '0.0.0.0'),
-            port=getenv('PORT', 5000), debug=(getenv('DEBUG', '').lower() == 'true'))
+    app.run(host=getenv('HOST', '127.0.0.1'),
+            port=getenv('PORT', 8000), debug=(getenv('DEBUG', '').lower() == 'true'))
