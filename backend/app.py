@@ -1,4 +1,4 @@
-from os import environ, getenv
+from os import getenv
 from flask import Flask, jsonify, request, Response
 from pathlib import Path
 from werkzeug.utils import secure_filename
