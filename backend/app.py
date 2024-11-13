@@ -1,5 +1,5 @@
 from os import getenv
-from flask import Flask, jsonify, request, Response
+from flask import Flask, render_template_string, jsonify, request, Response
 from pathlib import Path
 from werkzeug.utils import secure_filename
 from re import findall
@@ -33,6 +33,42 @@ def hex_to_rgba(hex_code):
         return (r, g, b, a)
     
     return (r, g, b, 255)
+
+
+
+@app.route('/')
+def home():
+    html_content = '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to rmbg_api</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 50px;
+            }
+            h1 {
+                color: #333;
+            }
+            p {
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to my rmbg_api Application!</h1>
+        <p>This api is based on the rembg python package</p>
+        <p>Please head to our project GitHub for documentation:</p>
+        <a href="https://github.com/DannyAkintunde/rmbg_web" target="_blank">Project GitHub</a><br/>
+        <small>clone this space to use the api</small>
+    </body>
+    </html>
+    '''
+    return render_template_string(html_content)
 
 @app.route('/api/rmbg', methods=['GET', 'POST'])
 def remove_bg():
