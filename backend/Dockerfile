@@ -1,25 +1,13 @@
-FROM python:3.7.15-slim as builder
+FROM python:3.12
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-#RUN apk update
-
-COPY ./backend/requirements.txt requirements.txt
-
-RUN pip install --user -r requirements.txt
-
-FROM python:3.7.15-slim
-
-ENV PYTHONUNBUFFERED 1
+RUN useradd -m -u 1000 server
+USER server
+ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
-ENV PATH=/root/.local/bin:$PATH
-COPY --from=builder /root/.local /root/.local
+COPY --chown=server ./backend/requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-COPY ./backend .
-
-EXPOSE 8000
-
-ENTRYPOINT ["python3", "-u", "app.py"]
+COPY --chown=server ./backend /app
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:7860"]
