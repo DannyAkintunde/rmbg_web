@@ -2,3 +2,4 @@ requests
 Flask
 python-dotenv
 rembg
+gunicorn
