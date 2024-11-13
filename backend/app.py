@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 models_path = Path(getenv('U2NET_HOME', './models '))
 models_path.mkdir(parents=True, exist_ok=True)
-models = ["birefnet-cod", "birefnet-dis", "birefnet-general", "birefnet-general-lite", "birefnet-hrsod", "birefnet-massive", "birefnet-portrait", "isnet-anime", "isnet-general-use", "sam", "silueta", "u2net", "u2net_cloth_seg", "u2net_human_seg", "u2netp"]
+models = ["birefnet-cod", "birefnet-dis", "birefnet-general", "birefnet-general-lite", "birefnet-hrsod", "birefnet-massive", "birefnet-portrait", "isnet-anime", "isnet-general-use", "silueta", "u2net", "u2net_cloth_seg", "u2net_human_seg", "u2netp"]
 # models = [file.name for file in models_path.iterdir() if file.is_file() and file.suffix == '.onnx']
 
 session = new_session(getenv('DEFAULT_MODEL', 'u2netp'))
