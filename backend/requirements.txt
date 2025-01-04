@@ -2,4 +2,5 @@ requests
 Flask
 python-dotenv
 rembg
+onnxruntime
 gunicorn
